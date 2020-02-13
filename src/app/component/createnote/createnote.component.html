@@ -1,0 +1,24 @@
+<div class="main">
+    <mat-card style=" width: 29em; border-radius: 13px;" *ngIf="!popup" (click)="onPopup()" class="mat-card"
+        fxLayout="row">
+
+        <input matInput class="searchBar" placeholder="take a note">
+
+
+    </mat-card>
+
+    <mat-card style=" width: 29em; border-radius: 13px;" *ngIf="popup" class="mat1-card" fxLayout="column">
+        <textarea style="border: none;" matInput type="text" class="input" placeholder="Title"
+            [(ngModel)]="note.title"></textarea>
+        <textarea style="border: none; " matInput type="text" class="input" placeholder="take a note"
+            [(ngModel)]="note.description"></textarea>
+
+
+        <div class="icon" style="display:flex; justify-content: space-between; width: 100%;">
+            <div class="iconlist">
+                <app-iconlist style="width: 80%; display: flex; justify-content: space-between;"></app-iconlist>
+            </div>
+            <div (click)="onSubmit()">close</div>
+        </div>
+    </mat-card>
+</div>
