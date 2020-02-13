@@ -1,0 +1,44 @@
+.example-container {
+    width: -400px;
+    height:200vh;
+  }
+  
+  .example-sidenav-content {
+    display: flex;
+    width:400vw;
+    height: 200vh;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .example-sidenav {
+  width: 190px;;
+
+  }
+  .notesdiv{
+      padding: 25px;
+      border-bottom: 1px solid;
+  }
+
+.lebelmain{
+    padding: 25px;
+    border-bottom: 1px solid;
+}
+
+.trashmain{
+    padding:25px;
+    border-bottom: 1px solid;
+}
+.notes{
+    display: flex;
+    align-items: center;
+}
+.remainder{
+    display: flex;
+    align-items: center;
+}
+
+.createnote{
+    display: inline;
+    justify-content: center;
+}
