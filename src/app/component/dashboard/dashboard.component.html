@@ -1,0 +1,114 @@
+<mat-toolbar class="docs-navbar-header">
+  <mat-toolbar-row>
+
+    <div class="Main">
+      <div class="sideNavIcon">
+        <div>
+
+          <mat-icon (click)="drawer.toggle()" style="padding-right: 20px;">menu</mat-icon>
+
+        </div>
+        <div>
+          <img src="assets/image/googlekeepicon.png">
+        </div>
+
+        <div>Keep</div>
+
+      </div>
+
+      <div class="searchWhole">
+
+
+        <div class="searchbar">
+          <div class="searchIcon">
+            <mat-icon matSuffix></mat-icon>
+          </div>
+          <div>
+            <input class="input" matInput type="searchbar" placeholder="  Search...">
+          </div>
+        </div>
+
+        <div class="appBarLastIcon">
+          <div class="refresh">
+            <div id="refreshbutton" mat-icon-button>
+              <mat-icon>refresh</mat-icon>
+            </div>
+            <div mat-icon-button>
+              <mat-icon>
+                view_agenda
+              </mat-icon>
+            </div>
+          </div>
+
+
+          <div mat-icon-button>
+            <mat-icon>
+              account_circle
+            </mat-icon>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </mat-toolbar-row>
+
+</mat-toolbar>
+
+
+
+
+<!-- <div>
+  <router-outlet></router-outlet>
+</div> -->
+
+ <div class="sidenavdiv">
+  <mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+      <div class="maindiv">
+
+
+        <div class="notesdiv">
+
+          <div class="notes" routerLink="notes">
+            <img src="assets/icon/emoji_objects-24px.svg">
+            Notes
+          </div>
+
+          <div class="remainder">
+            <img src="assets/icon/notifications_none-24px.svg">
+            Remainder
+          </div>
+
+        </div>
+        
+        <div class="lebelmain">
+
+          <div>
+            LABELS
+          </div>
+
+          <div>
+            <img src="assets/icon/edit-24px.svg">
+            Edit labels
+          </div>
+
+        </div>
+
+        <div class="trashmain">
+          <div class="archieve">
+              <img src="assets/icon/archive-24px.svg">
+              Archive
+          </div>
+          <div class="trash">
+              <img src="assets/icon/restore_from_trash-24px.svg">
+              Trash
+          </div>
+        </div>
+      </div>
+    </mat-drawer>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-container>
+</div> 
+
