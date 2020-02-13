@@ -1,18 +1,45 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RegistrationComponent } from './registration/registration.component';
-import { LoginComponent } from './login/login.component';
-import { ForgotpasswordComponent } from "./forgotpassword/forgotpassword.component";
-import { ResetpasswordComponent } from "./resetpassword/resetpassword.component";
+import { LoginComponent } from 'src/app/component/login/login.component';
+import { RegisterComponent } from 'src/app/component/register/register.component';
+import { ForgotpasswordComponent } from 'src/app/component/forgotpassword/forgotpassword.component';
+import { PasswordresetComponent } from 'src/app/component/passwordreset/passwordreset.component';
+import { DashboardComponent } from 'src/app/component/dashboard/dashboard.component';
+import { CreatenoteComponent } from 'src/app/component/createnote/createnote.component';
+import { NotesComponent } from 'src/app/component/notes/notes.component';
+import { EditComponent } from 'src/app/component/edit/edit.component';
 
-const routes: Routes = [ 
+const routes: Routes = [
   { path: "login", component: LoginComponent },
-  { path: '', component: LoginComponent },
-  { path: "register", component: RegistrationComponent },
-  { path: "forgotpassword", component: ForgotpasswordComponent },
-  { path: "resetpassword/:token", component: ResetpasswordComponent }
-];
 
+  { path: '', component: LoginComponent },
+
+  { path: "register", component: RegisterComponent },
+
+  { path: "passwordforgot", component: ForgotpasswordComponent },
+
+  { path: "resetPassword/:token", component: PasswordresetComponent },
+
+  {
+    path: "dashboard", component: DashboardComponent,
+    children: [
+
+      {
+        path: '', redirectTo: 'notes', pathMatch: 'full'
+      },
+      {
+        path: 'notes',
+        component: NotesComponent
+      },
+      {
+        path: 'edit',
+        component: EditComponent
+      },
+      { path: "createnote", component: CreatenoteComponent }
+    ]
+  }
+
+];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
