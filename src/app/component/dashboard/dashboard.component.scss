@@ -1,0 +1,93 @@
+.Main{
+    display: flex;
+}
+
+.sideNavIcon{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    min-width: 156px;
+    
+    cursor: pointer;
+}
+.refresh{
+    display: flex;
+    justify-content: space-around;
+    width: 96px;
+}
+.appBarLastIcon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 7em;
+}
+.searchWhole{
+    display: flex;
+    justify-content: space-between;
+    width: 47em;
+    margin-left: 8em;
+}
+.searchbar{
+    display: flex;
+    align-items: center;
+    border: 1px solid;
+    background-color: #fff;
+    border-radius: 7px;
+    height: 44px;
+    width: 35em;
+}
+.input{
+    width: 47em;
+    padding: 10px;
+    border-style: none;
+}
+.searchIcon{
+    display: flex;
+    align-items: center;
+}
+
+.example-container {
+    width: -400px;
+    height:200vh;
+  }
+  
+  .example-sidenav-content {
+    display: flex;
+    width:400vw;
+    height: 200vh;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .example-sidenav {
+  width: 190px;;
+
+  }
+  .notesdiv{
+      padding: 25px;
+      border-bottom: 1px solid;
+  }
+
+.lebelmain{
+    padding: 25px;
+    border-bottom: 1px solid;
+}
+
+.trashmain{
+    padding:25px;
+    border-bottom: 1px solid;
+}
+.notes{
+    display: flex;
+    align-items: center;
+    padding-bottom:inherit;
+}
+.remainder{
+    display: flex;
+    align-items: center;
+}
+
+.createnote{
+    display: inline;
+    justify-content: center;
+}
