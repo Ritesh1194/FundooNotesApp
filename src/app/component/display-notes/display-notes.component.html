@@ -1,0 +1,22 @@
+<div style="flex-wrap: wrap;"><div class="getAllNotes" fxLayout="{{view}}" fxFlexOffset="15" >
+    <mat-card class="getNotesMat" [ngStyle]="{'background':note.color}"
+    [ngClass]="{'qwerty':flag,'qwerty2':!flag}"  *ngFor="let note of notes" >
+       
+       
+        <div  (click)="openDialog(note)" >
+            <div class="tile">
+                {{note.title}}
+            </div>
+  
+            <div class="tile">
+                {{note.description}}
+            </div>
+        </div>
+
+        <div>
+            <app-iconlist></app-iconlist>
+        </div>
+    </mat-card>
+   
+  
+  </div></div>
