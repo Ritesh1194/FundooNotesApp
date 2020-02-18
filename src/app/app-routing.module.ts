@@ -7,8 +7,8 @@ import { PasswordresetComponent } from 'src/app/component/passwordreset/password
 import { DashboardComponent } from 'src/app/component/dashboard/dashboard.component';
 import { CreatenoteComponent } from 'src/app/component/createnote/createnote.component';
 import { NotesComponent } from 'src/app/component/notes/notes.component';
-import { EditComponent } from 'src/app/component/edit/edit.component';
-
+import { UpdatenoteComponent } from 'src/app/component/updatenote/updatenote.component';
+import { DisplayNotesComponent } from './component/display-notes/display-notes.component';
 const routes: Routes = [
   { path: "login", component: LoginComponent },
 
@@ -30,10 +30,13 @@ const routes: Routes = [
       {
         path: 'notes',
         component: NotesComponent
+      },{
+        path: 'displaynotes',
+        component: DisplayNotesComponent
       },
       {
-        path: 'edit',
-        component: EditComponent
+        path: 'update',
+        component: UpdatenoteComponent
       },
       { path: "createnote", component: CreatenoteComponent }
     ]
