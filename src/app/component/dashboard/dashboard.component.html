@@ -1,24 +1,18 @@
 <mat-toolbar class="docs-navbar-header">
   <mat-toolbar-row>
-
     <div class="Main">
       <div class="sideNavIcon">
         <div>
-
-          <mat-icon (click)="drawer.toggle()" style="padding-right: 20px;">menu</mat-icon>
-
+          <mat-icon (click)="drawer.toggle()" style="padding-right: 10px;">menu</mat-icon>
         </div>
+
         <div>
           <img src="assets/image/googlekeepicon.png">
         </div>
-
         <div>Keep</div>
-
       </div>
 
       <div class="searchWhole">
-
-
         <div class="searchbar">
           <div class="searchIcon">
             <mat-icon matSuffix></mat-icon>
@@ -28,80 +22,99 @@
           </div>
         </div>
 
-        <div class="appBarLastIcon">
-          <div class="refresh">
-            <div id="refreshbutton" mat-icon-button>
-              <mat-icon>refresh</mat-icon>
-            </div>
-            <div mat-icon-button>
-              <mat-icon>
-                view_agenda
-              </mat-icon>
-            </div>
-          </div>
+        <a mat-icon-button [routerLink]="dashboard" routerLinkActive="activated" matTooltip="Refresh">
+          <mat-icon>refresh</mat-icon>
+        </a>
 
-
-          <div mat-icon-button>
-            <mat-icon>
-              account_circle
-            </mat-icon>
-          </div>
-
-        </div>
+        <!-- List & Grid -->
+        <button mat-icon-button fxHide.xs="true" fxShow.sm="false" fxShow.md="true" fxShow.lg="true">
+          <mat-icon (click)="viewGrid()" *ngIf="!grid">view_stream</mat-icon>
+          <mat-icon (click)="viewGrid()" *ngIf="grid">view_module</mat-icon>
+        </button>
+        <!-- Settings -->
+        <button fxHide.xs="true" mat-icon-button [matMenuTriggerFor]="settings" matTooltip="Settings">
+          <mat-icon>settings</mat-icon>
+        </button>
+        <mat-menu #settings="matMenu">
+          <button mat-menu-item>
+            <span>Settings</span>
+          </button>
+          <button mat-menu-item>
+            <span>Send feedback</span>
+          </button>
+          <button mat-menu-item>
+            <span>Help</span>
+          </button>
+          <button mat-menu-item>
+            <span>App downloads</span>
+          </button>
+          <button mat-menu-item>
+            <span>Keyboad Shortcuts</span>
+          </button>
+        </mat-menu>
+        <!-- notfications -->
+        <button fxHide.xs="true" mat-icon-button [matMenuTriggerFor]="notifications" matTooltip="notifications">
+          <mat-icon>notifications_on</mat-icon>
+        </button>
+        <mat-menu #notifications="matMenu">
+        </mat-menu>
+        <!-- <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>Sign out
+        </button> -->
       </div>
     </div>
   </mat-toolbar-row>
-
 </mat-toolbar>
 
 
-
-
-<!-- <div>
-  <router-outlet></router-outlet>
-</div> -->
-
- <div class="sidenavdiv">
+<div class="sidenavdiv">
   <mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="side">
+    <mat-drawer #drawer class="example-sidenav" mode="side" style="width: 300px;">
       <div class="maindiv">
-
 
         <div class="notesdiv">
 
-          <div class="notes" routerLink="notes">
+          <div class="active system pd-03">
             <img src="assets/icon/emoji_objects-24px.svg">
-            Notes
+            <button mat-menu-item>
+              <span class="notes" routerLink="notes">Notes</span>
+            </button>
           </div>
 
-          <div class="remainder">
+          <div class="system pd-03" style="background-color:#feefc3">
             <img src="assets/icon/notifications_none-24px.svg">
-            Remainder
+            <button mat-menu-item>
+              <span class="reminder" routerLink="reminder">Reminder</span>
+            </button>
           </div>
-
         </div>
-        
+
         <div class="lebelmain">
 
           <div>
             LABELS
           </div>
-
-          <div>
+          <div class="active system pd-03">
             <img src="assets/icon/edit-24px.svg">
-            Edit labels
+            <button mat-menu-item>
+              <span class="label" routerLink="label">Edit labels</span>
+            </button>
           </div>
-
         </div>
 
         <div class="trashmain">
-          <div class="archieve">
-              <img src="assets/icon/archive-24px.svg">
-              Archive
+          <div class="active system pd-03">
+            <img src="assets/icon/archive-24px.svg">
+            <button mat-menu-item>
+              <span class="archieve" routerLink="archieve">Archive</span>
+            </button>
           </div>
-          <div class="trash">
-              <img src="assets/icon/restore_from_trash-24px.svg">
-              Trash
+
+          <div class="system pd-03" style="background-color:#feefc3">
+            <img src="assets/icon/restore_from_trash-24px.svg">
+            <button mat-menu-item>
+              <span class="trash" routerLink="trash">Trash</span>
+            </button>
           </div>
         </div>
       </div>
@@ -110,5 +123,4 @@
       <router-outlet></router-outlet>
     </div>
   </mat-drawer-container>
-</div> 
-
+</div>
