@@ -15,7 +15,13 @@ export const environment = {
   notesUpdateUrl: 'notes/update',
   notesDeleteUrl: 'notes/delete/{id}',
   getAllNotesUrl: 'notes/fetchNote',
-  getTrashedUrl: 'trashed/{noteId}'
+  pinNotesUrl: 'notes/pin/{id}',
+  unPinnedUrl: 'notes/pin/{id}',
+  addReminderUrl: 'notes/addreminder/{token}',
+  archiveUrl: 'notes/archieve/{id}',
+  unArchiveUrl: 'notes/archieve/{id}',
+  getTrashedUrl: 'trashed/{noteId}',
+  addColorUrl: 'notes/addColor'
 };
 
 /*
