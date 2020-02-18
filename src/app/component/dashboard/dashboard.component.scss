@@ -1,33 +1,38 @@
-.Main{
+.Main {
     display: flex;
+
 }
 
-.sideNavIcon{
+.sideNavIcon {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
     min-width: 156px;
-    
     cursor: pointer;
+    margin-left: 0px;
 }
-.refresh{
+
+.refresh {
     display: flex;
     justify-content: space-around;
     width: 96px;
 }
-.appBarLastIcon{
+
+.appBarLastIcon {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 7em;
+    width: 10%;
 }
-.searchWhole{
+
+.searchWhole {
     display: flex;
     justify-content: space-between;
     width: 47em;
     margin-left: 8em;
 }
-.searchbar{
+
+.searchbar {
     display: flex;
     align-items: center;
     border: 1px solid;
@@ -36,58 +41,71 @@
     height: 44px;
     width: 35em;
 }
-.input{
+
+.input {
     width: 47em;
     padding: 10px;
     border-style: none;
 }
-.searchIcon{
+
+.searchIcon {
     display: flex;
     align-items: center;
 }
 
 .example-container {
     width: -400px;
-    height:200vh;
-  }
-  
-  .example-sidenav-content {
+    height: 200vh;
+}
+
+.example-sidenav-content {
     display: flex;
-    width:400vw;
+    width: 400vw;
     height: 200vh;
     align-items: center;
     justify-content: center;
-  }
-  
-  .example-sidenav {
-  width: 190px;;
+}
 
-  }
-  .notesdiv{
-      padding: 25px;
-      border-bottom: 1px solid;
-  }
 
-.lebelmain{
-    padding: 25px;
+.notesdiv {
+    padding: 2px;
     border-bottom: 1px solid;
+    border-left: 0px;
+
 }
 
-.trashmain{
-    padding:25px;
-    border-bottom: 1px solid;
-}
-.notes{
-    display: flex;
-    align-items: center;
-    padding-bottom:inherit;
-}
-.remainder{
-    display: flex;
-    align-items: center;
-}
-
-.createnote{
+.createnote {
     display: inline;
     justify-content: center;
+}
+
+.system {
+    display: flex;
+    line-height: 40px;
+    border-radius: 0px 25px 25px 0px;
+}
+
+.lebelmain {
+    border-bottom: 1px solid;
+    padding-bottom: 10px;
+}
+
+.system>div,
+span {
+    flex: 1;
+}
+
+span {
+    padding-left: 32px;
+    align-items: center;
+}
+
+.pd-03 {
+    margin-bottom: 5px;
+    text-decoration: none;
+}
+
+
+.active {
+    background-color: #feefc3;
 }
