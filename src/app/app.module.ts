@@ -24,12 +24,12 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { DisplayNotesComponent } from 'src/app/component/display-notes/display-notes.component';
 import { CreatenoteComponent } from 'src/app/component/createnote/createnote.component';
 import { NotesComponent } from 'src/app/component/notes/notes.component';
-import { SidenavComponent } from 'src/app/component/sidenav/sidenav.component';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { EditComponent } from 'src/app/component/edit/edit.component';
-import { DeletenoteComponent } from 'src/app/component/deletenote/deletenote.component';
+import { UpdatenoteComponent } from 'src/app/component/updatenote/updatenote.component';
 import { MatSelectModule } from '@angular/material/select';
 import { IconlistComponent } from "src/app/component/iconlist/iconlist.component";
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,9 +41,7 @@ import { IconlistComponent } from "src/app/component/iconlist/iconlist.component
     DisplayNotesComponent,
     CreatenoteComponent,
     NotesComponent,
-    SidenavComponent,
-    EditComponent,
-    DeletenoteComponent, IconlistComponent
+    UpdatenoteComponent, IconlistComponent
 
   ],
   imports: [
@@ -65,10 +63,10 @@ import { IconlistComponent } from "src/app/component/iconlist/iconlist.component
     MatSidenavModule,
     FlexLayoutModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule, OwlDateTimeModule, OwlNativeDateTimeModule, MatTooltipModule
 
   ],
-  entryComponents: [EditComponent],
+  entryComponents: [UpdatenoteComponent],
   providers: [
     { provide: MatDialogRef, useValue: {} },
     { provide: MAT_DIALOG_DATA, useValue: [] },
