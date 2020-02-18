@@ -1,3 +1,3 @@
 export class Label {
-    name:string;
+    name: string;
 }
