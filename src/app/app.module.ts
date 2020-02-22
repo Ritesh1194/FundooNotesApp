@@ -30,6 +30,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { IconlistComponent } from "src/app/component/iconlist/iconlist.component";
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {  PinNoteComponent} from "src/app/component/pin-note/pin-note.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,8 +42,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     DisplayNotesComponent,
     CreatenoteComponent,
     NotesComponent,
-    UpdatenoteComponent, IconlistComponent
-
+    UpdatenoteComponent, IconlistComponent,
+PinNoteComponent
   ],
   imports: [
     BrowserModule,
