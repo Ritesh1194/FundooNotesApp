@@ -1,0 +1,78 @@
+<div class="getAllNotes">
+  <div [ngStyle]="{'background-color':data.color}">
+    <mat-card class="getNotesMat">
+      <div class="pinNotes">
+      </div>
+      <div class="notecard">
+        <div *ngFor="let image of data.images" class="imageNote">
+          <img [src]="getImages(image,data)" class="imageSize">
+          <mat-icon class="delete-icon" (click)=deleteImage(image,data)>delete</mat-icon>
+        </div>
+        <div class="pinImage">
+          <input class="noBorderAndBackground" placeholder="Title" matInput [(ngModel)]="data.title" [value]=data.title>
+          <button *ngIf="data.pinned" mat-icon-button matTooltip="unpin" (click)="pinned('unpinned',data)"
+            class="button">
+
+            <img class="image" style="border: none; width: 93%;" src="/assets/icon/pinned.svg" height="50%" id="imgRem">
+          </button>
+          <button *ngIf="!data.pinned" mat-icon-button matTooltip="pin" (click)="pinned('pinned',data)" class="button">
+            <img class="image" style="border: none; width: 93%;" src="/assets/icon/unpin.svg" height="50%" id="imgRem">
+          </button>
+        </div>
+      </div>
+      <div>
+        <textarea class="noBorderAndBackground" placeholder="description" matInput [(ngModel)]="data.description"
+          [value]=data.description></textarea>
+      </div>
+      <mat-chip-list #chipList>
+        <mat-chip *ngFor="let label of data.labels" [selectable]="selectable" [removable]="removable"
+          (removed)="removeLabel(label,data)">
+          {{label.labelName}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+
+      <div>
+        <button mat-icon-button matTooltip="Remind me" [matMenuTriggerFor]="remind">
+          <mat-icon>add_alert</mat-icon>
+        </button>
+        <mat-menu #remind="matMenu" class="morecard" (click)="$event.stopPropagation()">
+          <div class="input-wrapper">
+            <label>Add a remainder to note:</label>
+            <hr>
+            <input [min]="min" [(ngModel)]="selectedMoment" [owlDateTimeTrigger]="dtPicker1" [owlDateTime]="dtPicker1"
+              placeholder="select date and time">
+            <owl-date-time #dtPicker1></owl-date-time>
+          </div>
+          <div>
+            <button mat-button class="saveButton" (click)="saveRemainder(selectedMoment,data)">Save</button>
+          </div>
+        </mat-menu>
+        <button mat-icon-button matTooltip="Collaborator" (click)="dailogCollaborator(data)">
+          <mat-icon>person_add</mat-icon>
+        </button>
+        <app-change-color [newNote]="data" (colorChange)="updateColor($event)"></app-change-color>
+        <button mat-icon-button matTooltip="Add image">
+          <input style="display: none" type="file" (change)="onFileChanged($event,data)" #fileInput>
+          <mat-icon (click)="fileInput.click()">image</mat-icon>
+        </button>
+        <button *ngIf="data.archive" mat-icon-button (click)="updateArchiveNote('',data)" matTooltip="Undo Archive">
+          <mat-icon>unarchive</mat-icon>
+        </button>
+        <button *ngIf="!data.archive" mat-icon-button (click)="updateArchiveNote('archive',data)"
+          matTooltip="Undo Archive">
+          <mat-icon>archive</mat-icon>
+        </button>
+        <button mat-icon-button class="icon-button" id="more" [matMenuTriggerFor]="more">
+          <i id="accountcircle" class="material-icons">more_vert</i></button>
+        <mat-menu #more="matMenu" class="morecard">
+          <button mat-button (click)=moveToTrash(data)>Delete Note</button>
+          <!-- <app-add-note-labels [note]="data" (eventAddNoteLabel)="addNoteLabel($event)"></app-add-note-labels> -->
+        </mat-menu>
+        <button mat-button [mat-dialog-close]="data" (click)="closeClick(data)" style="float:right"
+          cdkFocusInitial>Close</button>
+      </div>
+
+    </mat-card>
+  </div>
+</div>
