@@ -15,13 +15,13 @@ export const environment = {
   notesUpdateUrl: 'notes/update',
   notesDeleteUrl: 'notes/delete/{id}',
   getAllNotesUrl: 'notes/fetchNote',
-  pinNotesUrl: 'notes/pin/{id}',
-  unPinnedUrl: 'notes/pin/{id}',
-  addReminderUrl: 'notes/addreminder/{token}',
-  archiveUrl: 'notes/archieve/{id}',
+  pinNotesUrl: 'notes/pin',
+  addReminderUrl: 'notes/addreminder',
+  archiveUrl: 'notes/archieve',
   unArchiveUrl: 'notes/archieve/{id}',
   getTrashedUrl: 'trashed/{noteId}',
-  addColorUrl: 'notes/addColor'
+  addColorUrl: 'notes/addColor',
+  getAllPinnedNotesUrl: 'notes/fetchpinnednote'
 };
 
 /*
