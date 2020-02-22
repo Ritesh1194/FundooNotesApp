@@ -1,0 +1,60 @@
+<div class="main" fxLayout="row" fxLayoutAlign="space-around center">
+    <div>
+        <button mat-icon-button matTooltip="Remind me" [matMenuTriggerFor]="remind">
+            <mat-icon>add_alert</mat-icon>
+        </button>
+        <mat-menu #remind="matMenu" class="morecard" (click)="$event.stopPropagation()">
+            <div class="input-wrapper">
+                <label>Add a Remainder To Note:</label>
+                <hr>
+                <input [min]="min" [(ngModel)]="selectedMoment" [owlDateTimeTrigger]="dtPicker1"
+                    [owlDateTime]="dtPicker1" placeholder="select date and time">
+                <owl-date-time #dtPicker1></owl-date-time>
+            </div>
+            <div>
+                <button mat-button class="saveButton" (click)="saveRemainder(selectedMoment,notes)">Save</button>
+            </div>
+        </mat-menu>
+    </div>
+
+    <div>
+        <button mat-button matTooltip="Collabarator">
+            <img src="assets/icon/collab.svg" (click)=collabrator() /></button>
+    </div>
+
+    <div>
+        <button mat-button matTooltip="Change Color">
+            <!-- <app-change-color [newNote]="data" (colorChange)="updateColor($event)"></app-change-color> -->
+            <img src="assets/icon/colorpalate.svg" (click)=changeColor() /></button>
+
+    </div>
+
+    <div>
+        <button mat-button matTooltip="Add Images">
+            <img src="assets/icon/addImage.svg" (click)=addImages() /></button>
+
+    </div>
+
+    <div>
+        <button mat-button matTooltip="Archive">
+            <img src="assets/icon/archive-24px.svg" (click)=archieve() /></button>
+        <!-- <button *ngIf="note.isArchieve" mat-icon-button (click)="updateArchiveNote('',note)" matTooltip="Undo Archive">
+            <mat-icon>unarchive</mat-icon>
+        </button>
+        <button *ngIf="!note.isArchieve" mat-icon-button (click)="updateArchiveNote('archive',note)"
+            matTooltip="Undo Archive">
+            <mat-icon>archive</mat-icon>
+        </button> -->
+    </div>
+
+    <div>
+
+        <button mat-button [matMenuTriggerFor]="belowMenu2" matTooltip="More">
+            <img src="assets/icon/more_vert-24px.svg" /></button>
+        <mat-menu #belowMenu2="matMenu" yPosition="below">
+            <button mat-menu-item>Add Label</button>
+            <button mat-menu-item>Add Drawing</button>
+            <button mat-menu-item>Show Checkboxes</button>
+        </mat-menu>
+    </div>
+</div>
