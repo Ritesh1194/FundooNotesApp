@@ -1,25 +1,27 @@
 <div style="flex-wrap: wrap;">
-    <div class="getAllNotes" fxLayout="{{view}}" fxFlexOffset="15">
+    <div class="getAllNotes" fxLayout="{{view}}" fxFlexOffset="10">
         <mat-card class="getNotesMat" [ngStyle]="{'background':note.color}" [ngClass]="{'qwerty':flag,'qwerty2':!flag}"
             *ngFor="let note of notes">
 
-            <div (click)="openDialog()">
-                <div class="tile">
-                    {{note.title}}
-                </div>
-
-                <div class="tile">
-                    {{note.description}}
-                </div>
-                <div class="icon">
-                    <div class="iconlist">
-                        <app-iconlist></app-iconlist>
-                    </div>
-                </div>
+            <!-- <div class="pinNotes" (click)="openDialog(note)"> -->
+            <div class="pinNotes" (click)="openDialog(note)">
+                <app-pin-note (click)="onClickNoteId(note.noteId)"></app-pin-note>
             </div>
 
+            <div class="tile" (click)="openDialog(note)">
+                {{note.title}}
+            </div>
 
+            <div class="tile" (click)="openDialog(note)">
+                {{note.description}}
+            </div>
+
+            <div class="icon">
+                <div class="iconlist">
+                    <app-iconlist></app-iconlist>
+
+                </div>
+            </div>
         </mat-card>
-
     </div>
 </div>
