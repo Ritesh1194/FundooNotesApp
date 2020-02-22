@@ -1,0 +1,95 @@
+.textarea {
+  outline: none;
+}
+
+.mat-card {
+  padding: 0px;
+  ;
+}
+
+.getNotesMat {
+  width: 20em;
+  border-radius: 15px;
+  box-shadow: 0px 1px 4px 0px;
+  margin: 5px;
+  display: block;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+// .mat-dialog-content {
+//   padding: 20px 24px;
+// }
+
+.mat-dialog-title {
+  margin: 0 0 3px;
+  display: block;
+}
+
+.noBorderAndBackground {
+  padding-left: 16px;
+  text-align: left;
+  width: 91%;
+  font-size: 12pt;
+  border: hidden;
+  display: flex;
+  outline: none;
+  background: transparent;
+}
+
+.head {
+  width: auto;
+  position: relative;
+}
+
+.button {
+  position: relative; 
+}
+
+.pinImage {
+  display: flex;
+
+}
+
+.getAllNotes {
+  display: inline;
+  flex-wrap: wrap;
+}
+
+::ng-deep.mat-dialog-container {
+  // box-shadow: 0 11px 15px -7px rgba(0,0,0,.2), 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12);
+  display: block;
+  padding: 0px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  // overflow: hidden;
+  outline: 0;
+  width: 100%;
+  height: auto;
+  // min-height: inherit;
+  // max-height: inherit;
+}
+.delete-icon {
+  background-repeat: no-repeat;
+  display: inline-block;
+  fill: currentColor;
+  height: 24px;
+  width: 24px;
+  margin-left: -21px;
+  visibility: hidden;
+}
+
+.imageNote {
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0px 11px;
+  height: fit-content;
+  width: 101px;
+  display: inline-flex;
+}
+
+.imageNote:hover .delete-icon {
+  opacity: 1;
+  visibility: visible;
+}
