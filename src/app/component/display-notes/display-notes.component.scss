@@ -3,7 +3,6 @@
     border-radius: 15px;
     box-shadow: 0px 1px 4px 0px;
     margin: 5px;
-
     display: block;
     justify-content: space-around;
     align-items: center;
@@ -23,4 +22,14 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+}
+
+.pinNotes {
+    display: inline;
+    padding-left: 290px;
+}
+
+.getAllNotes {
+    display: flex;
+    flex-wrap: wrap;
 }
