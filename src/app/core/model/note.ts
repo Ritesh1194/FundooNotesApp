@@ -1,5 +1,4 @@
 export class Note {
-  [x: string]: any;
   noteId: number;
   user_id: number;
   title: string;
@@ -9,7 +8,5 @@ export class Note {
   isPinned: boolean;
   color: string;
   remainder: string;
-notes: any[];
+  Note: any[];
 }
-
-
