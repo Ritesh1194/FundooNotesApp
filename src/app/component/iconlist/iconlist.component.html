@@ -12,7 +12,7 @@
                 <owl-date-time #dtPicker1></owl-date-time>
             </div>
             <div>
-                <button mat-button class="saveButton" (click)="saveRemainder(selectedMoment,notes)">Save</button>
+                <button mat-button class="saveButton" (click)="saveRemainder(selectedMoment)">Save</button>
             </div>
         </mat-menu>
     </div>
@@ -37,21 +37,22 @@
 
     <div>
         <button mat-button matTooltip="Archive">
-            <img src="assets/icon/archive-24px.svg" (click)=archieve() /></button>
-        <!-- <button *ngIf="note.isArchieve" mat-icon-button (click)="updateArchiveNote('',note)" matTooltip="Undo Archive">
-            <mat-icon>unarchive</mat-icon>
-        </button>
-        <button *ngIf="!note.isArchieve" mat-icon-button (click)="updateArchiveNote('archive',note)"
-            matTooltip="Undo Archive">
-            <mat-icon>archive</mat-icon>
-        </button> -->
+            <img src="assets/icon/archive-24px.svg" (click)="archiveNotes()"/></button>
     </div>
+
+    <!-- <button *ngIf="isPinned"  mat-icon-button matTooltip="unpin" (click)="pinnedNote()" class="button">
+        <img class="image" style="border: none; width: 93%;" src="/assets/icon/pinned.svg" height="50%" id="imgRem">
+     </button>
+     <button *ngIf="!isPinned" mat-icon-button matTooltip="pin" (click)="pinnedNote()" class="button">
+       <img class="image" style="border: none; width: 93%; " src="/assets/icon/unpin.svg" height="50%" id="imgRem">
+     </button> -->
 
     <div>
 
         <button mat-button [matMenuTriggerFor]="belowMenu2" matTooltip="More">
             <img src="assets/icon/more_vert-24px.svg" /></button>
         <mat-menu #belowMenu2="matMenu" yPosition="below">
+            <button mat-menu-item (click)="deleteNote()">Delete Note</button>
             <button mat-menu-item>Add Label</button>
             <button mat-menu-item>Add Drawing</button>
             <button mat-menu-item>Show Checkboxes</button>
