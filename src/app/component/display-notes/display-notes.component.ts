@@ -1,48 +1,50 @@
-import { Component, OnInit, Inject, Injectable } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { FormGroup, FormControl } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, Inject, Injectable, Input, Output, EventEmitter } from '@angular/core';
 import { NoteServiceService } from 'src/app/core/services/note-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdatenoteComponent } from 'src/app/component/updatenote/updatenote.component';
-import { CreatenoteComponent } from '../createnote/createnote.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Note } from 'src/app/core/model/note';
-import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
+import { DashboardComponent } from '../dashboard/dashboard.component';
+import { NotesService } from 'src/app/core/services/notes.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-display-notes',
   templateUrl: './display-notes.component.html',
+
   styleUrls: ['./display-notes.component.scss']
 })
 export class DisplayNotesComponent implements OnInit {
+  @Input() childMessage: Note[];
+
   [x: string]: any;
   notes: any;
+  pinnotes: any;
   note: Note = new Note();
   Token = localStorage.getItem('token');
   popup: boolean = false;
   getAllNotes: [];
+  subscription: Subscription;
   constructor(private noteservice: NoteServiceService, public dialog: MatDialog,
-    public dialogRef: MatDialogRef<DisplayNotesComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private router: Router) { }
+    public dialogRef: MatDialogRef<DisplayNotesComponent>, private notesService: NotesService,
+    @Inject(MAT_DIALOG_DATA) public data: any, private router: Router) {
+
+    this.subscription = notesService.getNotes().subscribe(message => {
+      console.log("in display notes subscrib....", message.notes);
+      this.notes = message.notes;
+      console.log("Others Notes:", this.notes);
+    });
+  }
 
   ngOnInit() {
-
-    // this.noteservice.subcribe(() => {
-    //   this.displayNotes();
-    // });
-
-    this.noteservice.getAllNotes(localStorage.getItem('token')).subscribe((response: any) => {
-      console.log(response);
-      this.notes = response.obj;
-    });
+    this.getAllPinNotes();
   }
   closeClick(newNote: any) {
     console.log(this.note.title);
     console.log(this.note.description);
     this.updateNote(newNote);
   }
-  onClickNoteId(noteId) {
+  onClickNoteId(noteId, isPin) {
     this.noteservice.updateNotes(noteId);
   }
 
@@ -59,11 +61,9 @@ export class DisplayNotesComponent implements OnInit {
     });
   }
 
-
   updateNote(newNote) {
     this.noteservice.updateNote(newNote, localStorage.getItem('token'), this.notes.noteId).subscribe(response => {
       console.log(response.obj);
-      // this.dialogRef.close();
     },
       error => {
         console.log("error");
@@ -72,32 +72,11 @@ export class DisplayNotesComponent implements OnInit {
   token(newNote: any, noteId: any, token: any) {
     throw new Error("Method not implemented.");
   }
+
   getAllPinNotes() {
     this.noteservice.getAllPinnedNotes(localStorage.getItem('token')).subscribe((response: any) => {
-      console.log(response);
-      this.notes = response.obj;
+      this.pinnotes = response.obj;
+      console.log("Pinned Notes:", this.pinnotes );
     });
-  }
-
-  displayNotes() {
-    let getNotes = this.noteservice.getAllNotes(localStorage.getItem('token'));
-    let getPinnedNotes = this.noteservice.getAllPinnedNotes(localStorage.getItem('token'));
-
-    this.notes.subscribe(
-      (data) => {
-        console.log("All Notes" + data.response);
-        this.notes = data.list;
-
-        console.log(" " + this.notes);
-      },
-      (error: any) => {
-        console.log("error");
-      });
-    getPinnedNotes.subscribe(
-      (data) => {
-
-        this.notes = data.list;
-      }
-    );
   }
 }
