@@ -22,7 +22,8 @@
           </div>
         </div>
 
-        <a mat-icon-button [routerLink]="dashboard" routerLinkActive="activated" matTooltip="Refresh">
+        <a mat-icon-button [routerLink]="['dashboard/notes']" (click)="getAllListNotes()" routerLinkActive="activated"
+          matTooltip="Refresh">
           <mat-icon>refresh</mat-icon>
         </a>
 
@@ -76,7 +77,7 @@
 
           <div class="active system pd-03">
             <img src="assets/icon/emoji_objects-24px.svg">
-            <button mat-menu-item routerLink="notes">
+            <button mat-menu-item [routerLink]="['notes']" (click)="getAllListNotes()">
               <span class="notes">Notes</span>
             </button>
           </div>
@@ -105,21 +106,24 @@
         <div class="trashmain">
           <div class="active system pd-03">
             <img src="assets/icon/archive-24px.svg">
-            <button mat-menu-item>
-              <span class="archieve" routerLink="archieve">Archive</span>
-            </button>
+            <!-- <button mat-menu-item [routerLink]="['archieve']" (click)="navigateArchive()">
+              <span class="archieve">Archive</span>
+            </button> -->
+            <a [routerLink]="['notes']" class="archive" (click)="archiveNotes()">Archive</a>
           </div>
 
           <div class="system pd-03" style="background-color:#feefc3">
             <img src="assets/icon/restore_from_trash-24px.svg">
-            <button mat-menu-item>
-              <span class="trash" routerLink="trash">Trash</span>
-            </button>
+            <!-- <button mat-menu-item [routerLink]="['trash']"> -->
+            <a [routerLink]="['notes']" class="trash" (click)="trashNotes()">Trash</a>
+            <!-- <span class="trash">Trash</span> -->
+            <!-- </button> -->
           </div>
         </div>
       </div>
     </mat-drawer>
     <div>
+
       <router-outlet></router-outlet>
     </div>
   </mat-drawer-container>
