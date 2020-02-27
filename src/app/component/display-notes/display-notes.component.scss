@@ -33,3 +33,38 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.AllPinnedNotes {
+    display: inline;
+    padding-left: 290px;
+}
+
+.getAllTrashedNotes {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.getAllPinnedNotes {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.AllTrashedNotes {
+    display: inline;
+    padding-left: 290px;
+}
+
+.pin {
+    margin-left: 5px;
+    height: 10%;
+}
+
+.getAllArchiveNotes {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.AllArchiveNotes {
+    display: inline;
+    padding-left: 290px;
+}
