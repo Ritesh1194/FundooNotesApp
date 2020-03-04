@@ -7,53 +7,63 @@
             <div class="input-wrapper">
                 <label>Add a Remainder To Note:</label>
                 <hr>
-                <input [min]="min" [(ngModel)]="selectedMoment" [owlDateTimeTrigger]="dtPicker1"
-                    [owlDateTime]="dtPicker1" placeholder="select date and time">
+                <input [min]="min" [(ngModel)]="reminder" [owlDateTimeTrigger]="dtPicker1" [owlDateTime]="dtPicker1"
+                    placeholder="select date and time">
                 <owl-date-time #dtPicker1></owl-date-time>
             </div>
             <div>
-                <button mat-button class="saveButton" (click)="saveRemainder(selectedMoment)">Save</button>
+                <button mat-button class="saveButton" (click)="saveRemainder(reminder)">Save</button>
             </div>
         </mat-menu>
     </div>
 
     <div>
         <button mat-button matTooltip="Collabarator">
-            <img src="assets/icon/collab.svg" (click)=collabrator() /></button>
+            <img src="assets/icon/collab.svg" (click)=dailogCollaborator(note) /></button>
     </div>
 
-    <div>
-        <button mat-button matTooltip="Change Color">
-            <!-- <app-change-color [newNote]="data" (colorChange)="updateColor($event)"></app-change-color> -->
-            <img src="assets/icon/colorpalate.svg" (click)=changeColor() /></button>
-
+    <div class="Ritesh">
+        <a><img src="assets/icon/colorpalate.svg" [matMenuTriggerFor]="colorlist" matTooltip="Add Color"></a>
     </div>
+
+    <mat-menu #colorlist="matMenu" [overlapTrigger]="false">
+        <ng-template matMenuContent>
+            <div>
+                <div fxLayout="row" fxLayoutGap="10px" style="margin-top: 1px" *ngFor="let colors of arrayOfColors">
+                    <div *ngFor="let color of colors">
+                        <button [ngStyle]="{ 'background-color': color.color }" (click)="setColor((color.color))"
+                            matTooltip="{{ color.name }}" mat-mini-fab></button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </mat-menu>
 
     <div>
         <button mat-button matTooltip="Add Images">
             <img src="assets/icon/addImage.svg" (click)=addImages() /></button>
-
     </div>
 
     <div>
-        <button mat-button matTooltip="Archive">
-            <img src="assets/icon/archive-24px.svg" (click)="archiveNotes()"/></button>
+        <button *ngIf="isArchive" mat-icon-button matTooltip="unArchive" (click)="onClickArchive()" class="button">
+            <img class="image" style="border: none; width: 93%;" src="assets/icon/archive-24px.svg" height="50%"
+                id="imgRem">
+        </button>
+        <button *ngIf="!isArchive" mat-icon-button matTooltip="Archive" (click)="onClickArchive()" class="button">
+            <img class="image" style="border: none; width: 93%; " src="assets/icon/unarchive-24px.svg" height="50%"
+                id="imgRem">
+        </button>
     </div>
-
-    <!-- <button *ngIf="isPinned"  mat-icon-button matTooltip="unpin" (click)="pinnedNote()" class="button">
-        <img class="image" style="border: none; width: 93%;" src="/assets/icon/pinned.svg" height="50%" id="imgRem">
-     </button>
-     <button *ngIf="!isPinned" mat-icon-button matTooltip="pin" (click)="pinnedNote()" class="button">
-       <img class="image" style="border: none; width: 93%; " src="/assets/icon/unpin.svg" height="50%" id="imgRem">
-     </button> -->
 
     <div>
 
         <button mat-button [matMenuTriggerFor]="belowMenu2" matTooltip="More">
             <img src="assets/icon/more_vert-24px.svg" /></button>
         <mat-menu #belowMenu2="matMenu" yPosition="below">
-            <button mat-menu-item (click)="deleteNote()">Delete Note</button>
-            <button mat-menu-item>Add Label</button>
+            <button mat-menu-item (click)="onClickDelete()">Delete Note</button>
+            <button mat-menu-item (click)="createNewLabel(note)">
+                Create Label
+            </button>
             <button mat-menu-item>Add Drawing</button>
             <button mat-menu-item>Show Checkboxes</button>
         </mat-menu>
