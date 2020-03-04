@@ -102,16 +102,6 @@ export class UpdatenoteComponent implements OnInit {
   // addNoteLabel(data) {
   //   this.updateNote(data.note);
   // }
-  // moveToTrash(note) {
-  //   note.inTrash = 1;
-  //   console.log(note);
-  //   this.updateNote(note);
-  // }
 
-  // updateArchiveNote(key, data) {
-  //   data.archive = key === 'archive' ? 1 : 0;
-  //   data.pinned = 0;
-  //   this.updateNote(data);
-  // }
 
 }
