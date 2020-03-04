@@ -91,12 +91,13 @@
 }
 
 .system>div,
-span {
+notes {
     flex: 1;
+    
 }
 
-span {
-    padding-left: 34px;
+notes {
+    padding-left: 32px;
     align-items: center;
 }
 
@@ -105,10 +106,12 @@ span {
     padding-left: 32px;
     align-items: center;
 }
-.archive{
+
+.archive {
     padding-left: 32px;
     align-items: center;
 }
+
 .pd-03 {
     margin-bottom: 5px;
     text-decoration: none;
