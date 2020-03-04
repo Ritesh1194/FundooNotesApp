@@ -1,12 +1,15 @@
+
+import { Collaborator } from './collaborator';
 export class Note {
   noteId: number;
-  user_id: number;
+  userId: number;
   title: string;
   description: string;
   isArchieve: boolean;
   isTrashed: boolean;
   isPinned: boolean;
   color: string;
-  remainder: string;
+  reminder: Date;
   Note: any[];
+  collaborators: Collaborator[];
 }
