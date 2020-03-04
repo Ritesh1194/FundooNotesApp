@@ -2,10 +2,10 @@
     width: 20em;
     border-radius: 15px;
     box-shadow: 0px 1px 4px 0px;
-    margin: 5px;
     display: block;
     justify-content: space-around;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .tile {
@@ -24,7 +24,7 @@
     width: 100%;
 }
 
-.pinNotes {
+.pinnotes {
     display: inline;
     padding-left: 290px;
 }
@@ -67,4 +67,8 @@
 .AllArchiveNotes {
     display: inline;
     padding-left: 290px;
+}
+
+.imgRem {
+    display: inline-flex;
 }
