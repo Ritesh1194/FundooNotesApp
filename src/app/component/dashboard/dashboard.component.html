@@ -59,9 +59,9 @@
         </button>
         <mat-menu #notifications="matMenu">
         </mat-menu>
-        <!-- <button mat-menu-item (click)="logout()">
+        <button mat-menu-item (click)="logout()">
           <mat-icon>logout</mat-icon>Sign out
-        </button> -->
+        </button>
       </div>
     </div>
   </mat-toolbar-row>
@@ -77,8 +77,10 @@
 
           <div class="active system pd-03">
             <img src="assets/icon/emoji_objects-24px.svg">
-            <button mat-menu-item [routerLink]="['notes']" (click)="getAllListNotes()">
-              <span class="notes">Notes</span>
+            <button mat-menu-item class="notes">
+              <a [routerLink]="['notes']" [queryParams]="{ page: 'display' }">
+                Notes
+              </a>
             </button>
           </div>
 
@@ -97,33 +99,30 @@
           </div>
           <div class="active system pd-03">
             <img src="assets/icon/edit-24px.svg">
-            <button mat-menu-item>
-              <span class="label" routerLink="label">Edit labels</span>
+            <button mat-menu-item (click)="createNewLabel(note)">
+              <span class="label">Edit labels</span>
             </button>
+            <!-- <img src="assets/icon/label-24px.svg"> -->
           </div>
         </div>
 
         <div class="trashmain">
           <div class="active system pd-03">
+
             <img src="assets/icon/archive-24px.svg">
-            <!-- <button mat-menu-item [routerLink]="['archieve']" (click)="navigateArchive()">
-              <span class="archieve">Archive</span>
-            </button> -->
-            <a [routerLink]="['notes']" class="archive" (click)="archiveNotes()">Archive</a>
+            <button mat-menu-item class="archive">
+              <a [routerLink]="['notes']" [queryParams]="{ page: 'archive' }">Archive</a></button>
           </div>
 
           <div class="system pd-03" style="background-color:#feefc3">
             <img src="assets/icon/restore_from_trash-24px.svg">
-            <!-- <button mat-menu-item [routerLink]="['trash']"> -->
-            <a [routerLink]="['notes']" class="trash" (click)="trashNotes()">Trash</a>
-            <!-- <span class="trash">Trash</span> -->
-            <!-- </button> -->
+            <button mat-menu-item class="trash">
+              <a [routerLink]="['notes']" [queryParams]="{ page: 'trash' }">Trash</a></button>
           </div>
         </div>
       </div>
     </mat-drawer>
     <div>
-
       <router-outlet></router-outlet>
     </div>
   </mat-drawer-container>
