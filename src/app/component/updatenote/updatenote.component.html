@@ -51,7 +51,7 @@
         <button mat-icon-button matTooltip="Collaborator" (click)="dailogCollaborator(data)">
           <mat-icon>person_add</mat-icon>
         </button>
-        <app-change-color [newNote]="data" (colorChange)="updateColor($event)"></app-change-color>
+        <!-- <app-change-color [newNote]="data" (colorChange)="updateColor($event)"></app-change-color> -->
         <button mat-icon-button matTooltip="Add image">
           <input style="display: none" type="file" (change)="onFileChanged($event,data)" #fileInput>
           <mat-icon (click)="fileInput.click()">image</mat-icon>
