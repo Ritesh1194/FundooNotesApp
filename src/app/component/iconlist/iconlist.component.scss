@@ -3,3 +3,12 @@
     justify-content: space-around;
     align-items: center;
 }
+
+.imageNote {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0px 11px;
+    height: fit-content;
+    width: 101px;
+    display: inline-flex;
+}
