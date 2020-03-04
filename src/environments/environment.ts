@@ -9,7 +9,8 @@ export const environment = {
   loginUrl: 'users/login/',
   forgotpasswordUrl: 'users/forgotpassword/',
   resetPaswordUrl: 'users/update/{token}/',
-  getUsersUrl: 'users/getusers/',
+  usersVerifyUrl: 'users/verify',
+  getUsersUrl: 'users/getusers',
   notesApiUrl: 'http://localhost:9050',
   notesCreateUrl: 'notes/create',
   notesUpdateUrl: 'notes/update',
@@ -19,10 +20,20 @@ export const environment = {
   addReminderUrl: 'notes/addreminder',
   archiveUrl: 'notes/archieve',
   getTrashedUrl: 'notes/trashed',
+  restoreNotesUrl: 'notes/restore',
   addColorUrl: 'notes/addColor',
   getAllPinnedNotesUrl: 'notes/fetchpinnednote',
   getAllArchiveNotesUrl: 'notes/fetcharchivenote',
-  getAllTrashedNotesUrl: 'notes/fetchTrashedNote'
+  getAllTrashedNotesUrl: 'notes/fetchTrashedNote',
+
+  labelApiUrrl: 'http://localhost:9050',
+  createLabelUrl: 'label/create',
+  addLabelUrl: 'label/addlabel',
+  createAndMapUrl: 'label/createandmap',
+
+  collaboratorUrl: 'http://localhost:9050',
+  addCollaboratorUrl: 'collaborator/addCollab',
+  getCollabaratorUrl: 'collaborator/fetchColabNote'
 };
 
 /*
