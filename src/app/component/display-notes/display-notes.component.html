@@ -1,13 +1,14 @@
-<div style="flex-wrap: wrap;">
+<div style="flex-wrap: wrap;" *ngIf="!note.trashedNotes && !note.archiveNotes">
+    <div class="pin">
+        Pinned Notes
+    </div>
     <div class="getAllPinnedNotes" fxLayout="{{view}}" fxFlexOffset="10">
-        <div class="pin">
-            Pinned Notes
-        </div>
-        <mat-card class="getNotesMat" [ngStyle]="{'background':note.color}" [ngClass]="{'qwerty':flag,'qwerty2':!flag}"
-            *ngFor="let note of pinnotes">
 
-            <div class="pinNotes">
-                <app-pin-note [xyz]='note'></app-pin-note>
+        <mat-card class="getNotesMat" style="margin-right: 10px;" *ngFor="let note of pinNotes"
+            [ngStyle]="{'background':note.color}" [ngClass]="{'qwerty':flag,'qwerty2':!flag}">
+
+            <div class="pinnotes" (click)="unpin=!note.unpin">
+                <a><img src="assets/icon/pinned.svg" id="imgRem" (click)="onPin(note.noteId)" /></a>
             </div>
 
             <div class="tile" (click)="openDialog(note)">
@@ -25,18 +26,19 @@
                 </div>
             </div>
         </mat-card>
+
     </div>
 </div>
 
 
 <span>
-    Others</span>
-<div style="flex-wrap: wrap;">
+    Others Notes</span>
+<div style="flex-wrap: wrap;" *ngIf="!note.trashedNotes && !note.archiveNotes">
     <div class="getAllNotes" fxLayout="{{view}}" fxFlexOffset="10">
-        <mat-card class="getNotesMat" [ngStyle]="{'background':note.color}" [ngClass]="{'qwerty':flag,'qwerty2':!flag}"
-            *ngFor="let note of notes">
-            <div class="pinNotes">
-                <app-pin-note [xyz]='note'></app-pin-note>
+        <mat-card class="getNotesMat" style="margin-right: 10px;" *ngFor="let note of notes"
+            [ngStyle]="{'background':note.color}" [ngClass]="{'qwerty':flag,'qwerty2':!flag}">
+            <div class="pinnotes" (click)="pin=!note.pin">
+                <a><img src="assets/icon/unpin.svg" id="imgRem" (click)="onPin(note.noteId)" /></a>
             </div>
 
             <div class="tile" (click)="openDialog(note)">
@@ -52,57 +54,22 @@
                     <app-iconlist [xyz]='note'></app-iconlist>
                 </div>
             </div>
-        </mat-card>
-    </div>
-</div>
+            <div class="icon" *ngIf="note.trashedNotes">
+                <div class="Ritesh">
+                    <a><img class="img-style" src="assets/icon/delete_forever-24px.svg"
+                            (click)="onClickDelete(note.noteId)" matTooltip="Delete forever"></a>
+                </div>
 
-
-<div style="flex-wrap: wrap;">
-    <div class="getAllArchiveNotes" fxLayout="{{view}}" fxFlexOffset="10">
-        <mat-card class="getNotesMat" [ngStyle]="{'background':note.color}" [ngClass]="{'qwerty':flag,'qwerty2':!flag}"
-            *ngFor="let note of AllArchiveNotes">
-            <div class="AllArchiveNotes">
-                <app-pin-note [xyz]='note'></app-pin-note>
-            </div>s
-
-            <div class="tile" (click)="openDialog(note)">
-                {{note.title}}
-            </div>
-
-            <div class="tile" (click)="openDialog(note)">
-                {{note.description}}
-            </div>
-
-            <div class="icon">
-                <div class="iconlist">
-                    <app-iconlist [xyz]='note'></app-iconlist>
+                <div class="Ritesh">
+                    <a><img class="img-style" src="assets/icon/restore_from_trash-24px.svg"
+                            (click)="onClickRestore(note.noteId)" matTooltip="Restore"></a>
                 </div>
             </div>
-        </mat-card>
-    </div>
-</div>
-
-<div style="flex-wrap: wrap;">
-    <div class="getAllTrashedNotes" fxLayout="{{view}}" fxFlexOffset="10">
-        <mat-card class="getNotesMat" [ngStyle]="{'background':note.color}" [ngClass]="{'qwerty':flag,'qwerty2':!flag}"
-            *ngFor="let note of AllTrashedNotes">
-            <div class="AllTrashedNotes">
-                <app-pin-note [xyz]='note'></app-pin-note>
+            <div *ngFor="let label of newLabels">
+                <mat-button (click)="onClickCheckbox(event, label, note)">
+                    {{labels.name}}
+                </mat-button>
             </div>
-
-            <div class="tile" (click)="openDialog(note)">
-                {{note.title}}
-            </div>
-
-            <div class="tile" (click)="openDialog(note)">
-                {{note.description}}
-            </div>
-
-            <!-- <div class="icon">
-                <div class="iconlist">
-                    <app-iconlist [xyz]='note'></app-iconlist>
-                </div>
-            </div> -->
         </mat-card>
     </div>
 </div>
