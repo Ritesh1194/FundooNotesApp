@@ -30,7 +30,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { IconlistComponent } from "src/app/component/iconlist/iconlist.component";
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { PinNoteComponent } from "src/app/component/pin-note/pin-note.component";
+import { CollaboratorComponent } from "src/app/component/collaborator/collaborator.component";
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -43,8 +44,9 @@ import { PinNoteComponent } from "src/app/component/pin-note/pin-note.component"
     DisplayNotesComponent,
     CreatenoteComponent,
     NotesComponent,
-    UpdatenoteComponent, IconlistComponent,
-    PinNoteComponent
+    UpdatenoteComponent,
+    IconlistComponent,
+    CollaboratorComponent
   ],
   imports: [
     BrowserModule,
@@ -65,10 +67,10 @@ import { PinNoteComponent } from "src/app/component/pin-note/pin-note.component"
     MatSidenavModule,
     FlexLayoutModule,
     MatDialogModule,
-    MatSelectModule, OwlDateTimeModule, OwlNativeDateTimeModule, MatTooltipModule
+    MatSelectModule, OwlDateTimeModule, OwlNativeDateTimeModule, MatTooltipModule, MatAutocompleteModule
 
   ],
-  entryComponents: [UpdatenoteComponent],
+  entryComponents: [UpdatenoteComponent, CollaboratorComponent],
   providers: [
     { provide: MatDialogRef, useValue: {} },
     { provide: MAT_DIALOG_DATA, useValue: [] },
