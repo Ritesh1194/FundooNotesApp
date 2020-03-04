@@ -1,0 +1,38 @@
+<mat-list>
+  <h3 mat-subheader>Colaborators</h3>
+  <mat-divider></mat-divider>
+  <mat-list-item *ngIf="user!=null">
+    <mat-icon mat-list-icon>account_circle</mat-icon>
+
+    <h4 mat-line>{{user.username}}(Owner)</h4>
+    <p mat-line> {{user.email}} </p>
+  </mat-list-item>
+  <mat-list-item *ngFor="let collabUser of collabUsers">
+    <h4 mat-line>{{collabUser.username}}</h4>
+    <p mat-line> {{collabUser.email}} </p>
+    <mat-icon mat-list-icon (click)="removeCollaborator(collabUser)">clear</mat-icon>
+
+  </mat-list-item>
+  <mat-list-item>
+    <mat-icon mat-list-icon>person_add</mat-icon>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Enter email here" aria-label="Number" matInput [formControl]="myControl"
+          [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let user of users" [value]="user.email">
+            {{user.email}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+    <button mat-icon-button class="button">
+      <mat-icon (click)="collaborate(myControl.value)">done</mat-icon>
+    </button>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+  <div class="saveButton">
+    <button mat-button (click)="closeClick()">Close</button>
+    <button mat-button (click)="collaborate(myControl.value)">Save</button>
+  </div>
+</mat-list>
