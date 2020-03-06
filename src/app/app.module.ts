@@ -32,7 +32,8 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CollaboratorComponent } from "src/app/component/collaborator/collaborator.component";
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-
+import { LabelsComponent } from "src/app/component/labels/labels.component";
+import {MatCheckboxModule} from '@angular/material/checkbox';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +47,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     NotesComponent,
     UpdatenoteComponent,
     IconlistComponent,
-    CollaboratorComponent
+    CollaboratorComponent, LabelsComponent
   ],
   imports: [
     BrowserModule,
@@ -67,10 +68,10 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatSidenavModule,
     FlexLayoutModule,
     MatDialogModule,
-    MatSelectModule, OwlDateTimeModule, OwlNativeDateTimeModule, MatTooltipModule, MatAutocompleteModule
+    MatSelectModule, OwlDateTimeModule, OwlNativeDateTimeModule, MatTooltipModule, MatAutocompleteModule,MatCheckboxModule
 
   ],
-  entryComponents: [UpdatenoteComponent, CollaboratorComponent],
+  entryComponents: [UpdatenoteComponent, CollaboratorComponent, LabelsComponent],
   providers: [
     { provide: MatDialogRef, useValue: {} },
     { provide: MAT_DIALOG_DATA, useValue: [] },
