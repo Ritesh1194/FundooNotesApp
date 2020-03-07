@@ -10,6 +10,7 @@ import { LabelserviceService } from 'src/app/core/services/labelservice.service'
 import { Label } from 'src/app/core/model/label';
 import { UpdatenoteComponent } from '../updatenote/updatenote.component';
 import { CollaboratorComponent } from '../collaborator/collaborator.component';
+import { LabelsComponent } from '../labels/labels.component';
 
 
 @Component({
@@ -30,7 +31,7 @@ export class IconlistComponent implements OnInit {
   labels: Label = new Label();
   public newLabels: Label[] = [];
   public filter = '';
-
+  name: string;
   constructor(private router: Router, private noteservice: NoteServiceService, private labelService: LabelserviceService,
     private snackBar: MatSnackBar, public dialog: MatDialog,
     public dialogRef: MatDialogRef<DisplayNotesComponent>,
@@ -107,27 +108,6 @@ export class IconlistComponent implements OnInit {
     ]
   ]
 
-  public createNewLabel(note) {
-    this.labelService.createLabel(this.labels.name).subscribe(response => {
-      console.log("adding check in database");
-      const data = { note };
-      this.eventAddNoteLabel.emit(data);
-      this.snackBar.open("label created", "Ok", { duration: 2000 });
-    }, error => {
-      this.snackBar.open("error", "error to create labels", { duration: 2000 });
-    }
-    )
-  }
-  public onClickCheckbox(event, label, note) {
-    event.stopPropagation();
-    this.labelService.createLabel(this.labels.name).subscribe(response => {
-      console.log("adding check in database");
-      const data = { note };
-      this.eventAddNoteLabel.emit(data);
-    }, (error) => console.log(error));
-  }
-
-
   public dailogCollaborator(note) {
     const dialogRef = this.dialog.open(CollaboratorComponent, {
       width: '500px',
@@ -135,6 +115,18 @@ export class IconlistComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+    });
+  }
+
+
+  public dailogLabel(name:string) {
+    const dialogRef = this.dialog.open(LabelsComponent, {
+      width: '500px',
+      data: { name: this.name }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.name = result;
     });
   }
 }
