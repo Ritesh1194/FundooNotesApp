@@ -1,0 +1,18 @@
+
+.example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+    display: block;
+  }
+  
+  .example-margin {
+    margin: 0 10px;
+    display: block;
+  }
+
+  .check{
+    height: 120px;
+    overflow-y: auto;
+  }
