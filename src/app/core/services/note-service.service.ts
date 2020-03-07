@@ -57,9 +57,7 @@ export class NoteServiceService {
   deleteNote(noteId: any): Observable<any> {
     console.log(`${environment.notesApiUrl}/${environment.notesDeleteUrl}?noteId=${noteId}`, Note, { headers: new HttpHeaders().set('token', localStorage.token) });
     return this.http.delete<any>(`${environment.notesApiUrl}/${environment.notesDeleteUrl}?noteId=${noteId}`, { headers: new HttpHeaders().set('token', localStorage.token) })
-
   }
-
 
   restoreNote(noteId: any): Observable<any> {
     console.log(`${environment.notesApiUrl}/${environment.notesDeleteUrl}?noteId=${noteId}`, Note, { headers: new HttpHeaders().set('token', localStorage.token) });
@@ -67,7 +65,7 @@ export class NoteServiceService {
   }
   reminderNotes(noteId: any, reminder: any): Observable<any> {
     console.log(`${environment.notesApiUrl}/${environment.addReminderUrl}?noteId=${noteId}`);
-    return this.http.post<any>(`${environment.notesApiUrl}/${environment.addReminderUrl}?noteId=${noteId}`,reminder, { headers: new HttpHeaders().set('token', localStorage.token) });
+    return this.http.post<any>(`${environment.notesApiUrl}/${environment.addReminderUrl}?noteId=${noteId}`, reminder, { headers: new HttpHeaders().set('token', localStorage.token) });
   }
   pinNotes(noteId: any): Observable<any> {
     console.log(`${environment.notesApiUrl}/${environment.pinNotesUrl}?noteId=${noteId}`);
