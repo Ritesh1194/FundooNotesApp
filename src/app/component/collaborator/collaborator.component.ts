@@ -25,12 +25,19 @@ export class CollaboratorComponent implements OnInit {
   public myControl = new FormControl();
   public users: User[] = [];
   public collabUsers: User[] = [];
+  subscription: any;
 
 
   constructor(private userService: UserserviceService, public dialogRef: MatDialogRef<CollaboratorComponent>,
     @Inject(MAT_DIALOG_DATA) public note: Note,
     private snackBar: MatSnackBar, private sanitizer: DomSanitizer,
-    private noteService: NoteServiceService) { }
+    private noteService: NoteServiceService) {
+    this.subscription = userService.getUsers().subscribe(message => {
+      console.log("in display Label subscrib....", message.users);
+      this.users = message.users;
+      console.log("Others Label:", this.users);
+    });
+  }
 
   ngOnInit() {
     this.getUsers();
@@ -51,9 +58,9 @@ export class CollaboratorComponent implements OnInit {
       , error => console.log("error"));
   }
 
-  collaborate(email) {
+  collaborate(email: string) {
     this.noteService.createCollaborator(this.email, this.note.noteId).subscribe(resp => {
-      this.dialogRef.close();
+      //this.dialogRef.close();
       this.snackBar.open("added to collaborator", "ok", { duration: 2000 })
     }
     );
