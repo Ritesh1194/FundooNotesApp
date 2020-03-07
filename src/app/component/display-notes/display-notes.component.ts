@@ -194,12 +194,12 @@ export class DisplayNotesComponent implements OnInit {
       }
     );
   }
-  public onClickCheckbox(event, label, note) {
-    event.stopPropagation();
-    this.labelService.createLabel(label).subscribe(response => {
-      console.log("adding check in database");
-      const data = { note };
-      this.eventAddNoteLabel.emit(data);
-    }, (error) => console.log(error));
-  }
+  // public onClickCheckbox(event, label, note) {
+  //   event.stopPropagation();
+  //   this.labelService.createLabel().subscribe(response => {
+  //     console.log("adding check in database");
+  //     const data = { note };
+  //     this.eventAddNoteLabel.emit(data);
+  //   }, (error) => console.log(error));
+  // }
 }
