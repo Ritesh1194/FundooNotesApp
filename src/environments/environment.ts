@@ -26,10 +26,11 @@ export const environment = {
   getAllArchiveNotesUrl: 'notes/fetcharchivenote',
   getAllTrashedNotesUrl: 'notes/fetchTrashedNote',
 
-  labelApiUrrl: 'http://localhost:9050',
+  labelApiUrl: 'http://localhost:9050',
   createLabelUrl: 'label/create',
   addLabelUrl: 'label/addlabel',
   createAndMapUrl: 'label/createandmap',
+  getAllLabelUrl: 'label/getAllLabel',
 
   collaboratorUrl: 'http://localhost:9050',
   addCollaboratorUrl: 'collaborator/addCollab',
