@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { CollaboratorComponent } from 'src/app/component/collaborator/collaborator.component';
-
+import { User} from "src/app/core/model/user";
 @Injectable({
   providedIn: 'root'
 })
 export class UserserviceService {
-
+  private subject = new Subject<any>();
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -42,11 +42,20 @@ export class UserserviceService {
     return this.http.get<any>(`${environment.apiUrl}${environment.getUsersUrl}`, { headers: new HttpHeaders().set('token', localStorage.token) })
   }
 
-  verifyEmail(token:string): Observable<any> {
+  verifyEmail(token: string): Observable<any> {
     return this.http.get<any>(`${environment.apiUrl}${environment.usersVerifyUrl}`, { headers: new HttpHeaders().set('token', localStorage.token) })
   }
   getCollaborateUser(userId): Observable<any> {
     return this.http.get(`${environment.apiUrl}${environment.getCollabaratorUrl}`, { headers: new HttpHeaders().set('token', localStorage.token) })
+  }
+
+  setUsers(message: User[]) {
+    console.log("List Of Notes", message)
+    this.subject.next({ users: message });
+  }
+
+  getNotes(): Observable<any> {
+    return this.subject.asObservable();
   }
 }
 
