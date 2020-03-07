@@ -27,15 +27,25 @@ export class DashboardComponent implements OnInit {
   @Output() eventAddNoteLabel = new EventEmitter();
   // public labels: Label[] = [];
   labels: Label = new Label();
+  label: Label[];
   archiveNotes: Note[];
   getAllNotes: [];
+
   private sub: any;
   private param: any;
+  dialogRef: any;
+  subscription: any;
   constructor(private noteService: NoteServiceService, private labelService: LabelserviceService, private router: Router, private route: ActivatedRoute, private matSnackBar: MatSnackBar) {
     // this.getAllListNotes();
+    this.subscription = labelService.getLabels().subscribe(message => {
+      console.log("in display Label subscrib....", message.label);
+      this.label = message.label;
+      console.log("Others Label:", this.label);
+    });
     this.displayNotes();
     this.getAllTrashedNotes();
     this.getAllArchiveNotes();
+    this.getAllListLabels();
   }
 
   ngOnInit() {
@@ -148,24 +158,27 @@ export class DashboardComponent implements OnInit {
     console.log("setTrashNotes");
     this.noteService.setTrashedNotesList(this.trashNotes);
   }
-  public createNewLabel(note) {
-    this.labelService.createLabel(this.labels.name).subscribe(response => {
-      console.log("adding check in database");
-      const data = { note };
-      this.eventAddNoteLabel.emit(data);
-      this.matSnackBar.open("label created", "Ok", { duration: 2000 });
-    }, error => {
-      this.matSnackBar.open("error", "error to create labels", { duration: 2000 });
-    }
-    )
+  
+  setLabels(message: Label[]) {
+    console.log("List Of Lables", message)
+    this.labelService.getLabels();
   }
-  public onClickCheckbox(event, label, note) {
-    event.stopPropagation();
-    this.labelService.createLabel(this.labels.name).subscribe(response => {
-      console.log("adding check in database");
-      const data = { note };
-      this.eventAddNoteLabel.emit(data);
-    }, (error) => console.log(error));
-  }
+  getAllListLabels() {
+    let lab = this.labelService.getAllLabel();
+    lab.subscribe(
+      (data) => {
+        this.label = data.obj;
+        console.log("Label", this.label);
 
+        if (this.label != undefined) {
+          this.setLabels(this.label);
+        }
+        console.log("Display Labels Are :", this.label);
+      },
+      (error: any) => {
+        console.log(error)
+        this.matSnackBar.open('error in note display', 'ok', { duration: 3000 });
+      }
+    );
+  }
 }
