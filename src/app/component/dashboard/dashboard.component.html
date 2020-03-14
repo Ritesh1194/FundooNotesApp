@@ -97,13 +97,18 @@
           <div>
             LABELS
           </div>
-
+          <div *ngFor="let label of labels" class="labelbutton">
+            <span class="labels1"> <img src="assets/icon/label-24px.svg"> {{label.name}} <br> </span>
+          </div><br>
           <div class="active system pd-03">
+
             <img src="assets/icon/edit-24px.svg">
             <button mat-menu-item (click)="getAllListLabels()">
               <span class="label">Edit labels</span>
             </button>
+
           </div>
+
         </div>
 
         <div class="trashmain">
