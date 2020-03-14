@@ -2,11 +2,13 @@ import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angu
 import { NoteServiceService } from 'src/app/core/services/note-service.service';
 import { Note } from 'src/app/core/model/note';
 import { NotesComponent } from '../notes/notes.component';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { Label } from 'src/app/core/model/label';
 import { LabelserviceService } from 'src/app/core/services/labelservice.service';
+import { Subscription } from 'rxjs';
 // import 'rxjs/add/operator/filter';
+export let browserRefresh = false;
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -26,7 +28,7 @@ export class DashboardComponent implements OnInit {
   trashNotes: Note[];
   @Output() eventAddNoteLabel = new EventEmitter();
   // public labels: Label[] = [];
-  labels: Label = new Label();
+  labels: Label[];
   label: Label[];
   archiveNotes: Note[];
   getAllNotes: [];
@@ -34,9 +36,15 @@ export class DashboardComponent implements OnInit {
   private sub: any;
   private param: any;
   dialogRef: any;
-  subscription: any;
+  subscription: Subscription;
+
   constructor(private noteService: NoteServiceService, private labelService: LabelserviceService, private router: Router, private route: ActivatedRoute, private matSnackBar: MatSnackBar) {
     // this.getAllListNotes();
+    this.subscription = router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        browserRefresh = !router.navigated;
+      }
+  });
     this.subscription = labelService.getLabels().subscribe(message => {
       console.log("in display Label subscrib....", message.label);
       this.label = message.label;
@@ -46,6 +54,7 @@ export class DashboardComponent implements OnInit {
     this.getAllTrashedNotes();
     this.getAllArchiveNotes();
     this.getAllListLabels();
+    
   }
 
   ngOnInit() {
@@ -158,7 +167,7 @@ export class DashboardComponent implements OnInit {
     console.log("setTrashNotes");
     this.noteService.setTrashedNotesList(this.trashNotes);
   }
-  
+
   setLabels(message: Label[]) {
     console.log("List Of Lables", message)
     this.labelService.getLabels();
@@ -167,11 +176,11 @@ export class DashboardComponent implements OnInit {
     let lab = this.labelService.getAllLabel();
     lab.subscribe(
       (data) => {
-        this.label = data.obj;
+        this.labels = data.obj;
         console.log("Label", this.label);
 
-        if (this.label != undefined) {
-          this.setLabels(this.label);
+        if (this.labels != undefined) {
+          this.setLabels(this.labels);
         }
         console.log("Display Labels Are :", this.label);
       },
