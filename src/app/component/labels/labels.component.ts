@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, Input, Inject } from '@angular/core';
 import { NoteServiceService } from 'src/app/core/services/note-service.service';
-import { MatSnackBar, MatDialog } from '@angular/material';
+import { MatSnackBar, MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { HelperServiceService } from 'src/app/core/services/helper-service.service';
 import { Note } from 'src/app/core/model/note';
 import { Label } from 'src/app/core/model/label';
@@ -18,72 +18,64 @@ export class LabelsComponent implements OnInit {
   public notes: Note[] = [];
   public newNotes: Note[] = [];
   name: string;
-  lables: Label = new Label();
   dialogRef: any;
-  @Input() xyz: Label;
+  @Input() noteData: any;
+  note: Note = new Note();
+  subscription: any;
+  labels: Label[];
+  label: Label = new Label();
   constructor(private noteService: NoteServiceService, private route: ActivatedRoute,
     private snackBar: MatSnackBar,
-    public dialog: MatDialog, private helperService: HelperServiceService, private labelService: LabelserviceService) { }
+    public dialog: MatDialog, private helperService: HelperServiceService, private labelService: LabelserviceService,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
 
-  ngOnInit() {
-    // this.route.params.subscribe((params) => {
-    //   this.label = params['labelName'];
-    //   this.helperService.getTheme().subscribe((resp) =>
-    //     this.grid = resp
-    //   );
-    //   this.getNotes();
-    // });
   }
 
-  // public onUpdateNote(data) {
-  //   this.updateMethod(data.note);
-  // }
+  ngOnInit() {
+    this.getNotes();
+    this.getAllListLabels();
+  }
 
-  // updateMethod(note) {
-  //   this.noteService.updateNote(note, note.noteId).subscribe(response => {
-  //     this.getNotes();
-  //   },
-  //     error => {
-  //       console.log("error");
-  //     })
-  // }
-
-  // public getNotes() {
-  //   this.noteService.retrieveNotes().subscribe(newNote => {
-  //     this.notes = newNote;
-  //     this.filterLabel(this.notes);
-  //   }, error => {
-  //     this.snackBar.open("error", "error to retrieve notes", { duration: 2000 });
-  //   }
-  //   )
-  // }
-
-  // public filterLabel(notes) {
-  //   this.newNotes.length = 0;
-  //   notes.filter((note) => note.labels.filter((label) => {
-  //     if (this.label === label.labelName && !note.inTrash) {
-  //       this.newNotes.push(note);
-  //     }
-  //   }))
-  // }
-
-
-
-
-  // heroes = ['Windstorm', 'Bombasto', 'Magneta', 'Tornado'];
-  // addHero(newHero: string) {
-  //   if (newHero) {
-  //     this.heroes.push(newHero);
-  //   }
-  // }
-  createLabel(name: string) {
-    this.labelService.createLabel(this.lables.name, localStorage.getItem('token')).subscribe(resp => {
-      // this.dialogRef.close();
-      this.snackBar.open("Label Is Created ", "ok", { duration: 2000 })
+  public getNotes() {
+    this.noteService.getAllNotes().subscribe(newNote => {
+      this.notes = newNote;
+      console.log("Notes Are ", this.notes);
+    }, error => {
+      this.snackBar.open("error", "error to retrieve notes", { duration: 2000 });
     }
     );
+  }
+  setLabels(message: Label[]) {
+    console.log("List Of Lables", message)
+    this.labelService.getLabels();
+  }
+  getAllListLabels() {
+    let lab = this.labelService.getAllLabel();
+    lab.subscribe(
+      (data) => {
+        this.labels = data.obj;
+        console.log("Label", this.labels);
+
+        if (this.labels != undefined) {
+          this.setLabels(this.labels);
+        }
+        console.log("Display Labels Are :", this.labels);
+      },
+      (error: any) => {
+        console.log(error)
+        this.snackBar.open('error in note display', 'ok', { duration: 3000 });
+      }
+    );
+  }
+  createLabel() {
+    console.log("note ID ", this.data.data.noteId);
+    console.log(this.labels, "Display Labels");
+    this.labelService.createLabel(this.label.name).subscribe(resp => {
+      this.snackBar.open("Label Is Created ", "ok", { duration: 2000 })
+    });
     error => {
-      this.snackBar.open("Label IS Not Created", "error", { duration: 2000 });
+      this.snackBar.open("Label Is Not Created", "error", { duration: 2000 });
     }
   }
 }
