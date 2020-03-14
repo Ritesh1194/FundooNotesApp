@@ -24,8 +24,8 @@ export class LabelserviceService {
   getLabels(): Observable<any> {
     return this.subject.asObservable();
   }
-  createLabel(name: any, token: string): Observable<any> {
-    console.log(`${environment.labelApiUrl}/${environment.createLabelUrl}`);
+  createLabel(name: any): Observable<any> {
+    console.log(`${environment.labelApiUrl}/${environment.createLabelUrl}`, name);
     return this.http.post<any>(`${environment.labelApiUrl}/${environment.createLabelUrl}`, name, { headers: new HttpHeaders().set('token', localStorage.token) });
   }
   createAndMapLabel(name: any, noteId: any): Observable<any> {
