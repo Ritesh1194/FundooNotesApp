@@ -19,13 +19,13 @@ import { LabelsComponent } from '../labels/labels.component';
   styleUrls: ['./iconlist.component.scss']
 })
 export class IconlistComponent implements OnInit {
-  @Input() xyz: Note;
+  @Input() xyz : Note;
   @Input() label: Label;
   noteId: number;
   isArchive: boolean = false;
   notes: Note = new Note();
   archiveNote: any;
-  @Input() note
+  @Input() note;
   @Output() eventAddNoteLabel = new EventEmitter();
   // public labels: Label[] = [];
   labels: Label = new Label();
@@ -120,9 +120,11 @@ export class IconlistComponent implements OnInit {
 
 
   public dailogLabel(name:string) {
+    const data = this.xyz;
+    console.log("note value",this.xyz);
     const dialogRef = this.dialog.open(LabelsComponent, {
       width: '500px',
-      data: { name: this.name }
+      data: { 'data' : data }
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
