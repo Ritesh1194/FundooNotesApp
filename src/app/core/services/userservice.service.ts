@@ -3,7 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable, Subject } from 'rxjs';
 import { CollaboratorComponent } from 'src/app/component/collaborator/collaborator.component';
-import { User} from "src/app/core/model/user";
+import { User } from "src/app/core/model/user";
 @Injectable({
   providedIn: 'root'
 })
@@ -50,11 +50,11 @@ export class UserserviceService {
   }
 
   setUsers(message: User[]) {
-    console.log("List Of Notes", message)
+    console.log("List Of Users", message)
     this.subject.next({ users: message });
   }
 
-  getNotes(): Observable<any> {
+  getAllUsers(): Observable<any> {
     return this.subject.asObservable();
   }
 }
