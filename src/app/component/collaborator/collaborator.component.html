@@ -4,12 +4,12 @@
   <mat-list-item *ngIf="user!=null">
     <mat-icon mat-list-icon>account_circle</mat-icon>
 
-    <h4 mat-line>{{user.username}}(Owner)</h4>
-    <p mat-line> {{user.email}} </p>
+    <h4 mat-line>{{user.email}}(Owner)</h4>
+    <!-- <p mat-line> {{user.email}} </p> -->
   </mat-list-item>
   <mat-list-item *ngFor="let collabUser of collabUsers">
-    <h4 mat-line>{{collabUser.username}}</h4>
-    <p mat-line> {{collabUser.email}} </p>
+    <h4 mat-line>{{collabUser.email}}</h4>
+    <!-- <p mat-line> {{collabUser.email}} </p> -->
     <mat-icon mat-list-icon (click)="removeCollaborator(collabUser)">clear</mat-icon>
 
   </mat-list-item>
@@ -20,7 +20,7 @@
         <input type="text" placeholder="Enter email here" aria-label="Number" matInput [formControl]="myControl"
           [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let user of users" [value]="user.email">
+          <mat-option *ngFor="let user of users" [value]="users.email">
             {{user.email}}
           </mat-option>
         </mat-autocomplete>
