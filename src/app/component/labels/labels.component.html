@@ -2,9 +2,7 @@
   <mat-card class="getLabel">
     <mat-card-content>
       <h3 mat-subheader>Label Note</h3>
-
-      <input matInput #name (keyup.enter)="createLabel(name.value)" (blur)="createLabel(name.value); name.value='' ">
-
+      <input matInput #name (keyup.enter)="createLabel(name.value)" (blur)="createLabel(name.value); name.value=''">
       <button mat-button (click)="createLabel(name.value)" class="example-margin">Create</button>
       <div class="check">
         <mat-checkbox class="example-margin" *ngFor="let label of labels">{{label.name}}</mat-checkbox>
