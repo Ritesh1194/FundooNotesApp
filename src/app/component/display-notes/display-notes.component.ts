@@ -4,11 +4,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { UpdatenoteComponent } from 'src/app/component/updatenote/updatenote.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Note } from 'src/app/core/model/note';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
 import { LabelserviceService } from 'src/app/core/services/labelservice.service';
+export let browserRefresh = false;
 @Component({
   selector: 'app-display-notes',
   templateUrl: './display-notes.component.html',
@@ -40,11 +41,11 @@ export class DisplayNotesComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute, private matSnackBar: MatSnackBar, private labelService: LabelserviceService) {
 
-    // this.subscription = noteservice.getNotes().subscribe(message => {
-    //   console.log("in display notes subscrib....", message.notes);
-    //   this.notes = message.notes;
-    //   console.log("Others Notes:", this.notes);
-    // });
+    this.subscription = router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        browserRefresh = !router.navigated;
+      }
+    });
   }
   ngOnInit() {
     this.sub = this.route
