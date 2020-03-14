@@ -49,7 +49,7 @@
                 {{note.description}}
             </div>
 
-            <div class="icon">
+            <div class="icon" *ngIf="!note.trashedNotes">
                 <div class="iconlist">
                     <app-iconlist [xyz]='note'></app-iconlist>
                 </div>
