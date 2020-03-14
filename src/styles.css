@@ -4,3 +4,7 @@ html, body {
     margin: 0;
     height: 94%;
 }
+.cdk-overlay-container .mat-dialog-container{
+    padding: 0px;
+    margin: 0px;
+}
