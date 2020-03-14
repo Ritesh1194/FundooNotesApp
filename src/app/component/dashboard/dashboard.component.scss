@@ -93,7 +93,7 @@
 .system>div,
 notes {
     flex: 1;
-    
+
 }
 
 notes {
@@ -115,9 +115,21 @@ notes {
 .pd-03 {
     margin-bottom: 5px;
     text-decoration: none;
+    
 }
 
 
 .active {
     background-color: #feefc3;
+}
+
+.labelbutton {
+    justify-content: center;
+    border: none;
+    padding-left: 0em;
+}
+
+.labels1 {
+    justify-content: center;
+    color: lightslategrey;
 }
