@@ -1,7 +1,8 @@
 export class Label {
-    name: string;
+    name: any;
     labelId: string;
     userId: string;
     noteId:string;
     Label:any[];
+    labelName:string;
 }
