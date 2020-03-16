@@ -9,6 +9,7 @@ import { CreatenoteComponent } from 'src/app/component/createnote/createnote.com
 import { NotesComponent } from 'src/app/component/notes/notes.component';
 import { UpdatenoteComponent } from 'src/app/component/updatenote/updatenote.component';
 import { DisplayNotesComponent } from './component/display-notes/display-notes.component';
+
 const routes: Routes = [
   { path: "login", component: LoginComponent },
 
