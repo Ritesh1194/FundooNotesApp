@@ -31,6 +31,8 @@ export const environment = {
   addLabelUrl: 'label/addlabel',
   createAndMapUrl: 'label/createandmap',
   getAllLabelUrl: 'label/getAllLabel',
+  labelDeleteUrl: 'label/removelabel',
+  updateLabelUrl: 'label/update',
 
   collaboratorUrl: 'http://localhost:9050',
   addCollaboratorUrl: 'collaborator/addCollab',
