@@ -14,10 +14,8 @@ import { LabelserviceService } from 'src/app/core/services/labelservice.service'
   styleUrls: ['./labels.component.css']
 })
 export class LabelsComponent implements OnInit {
-  public grid = false;
   public notes: Note[] = [];
   public newNotes: Note[] = [];
-  name: string;
   dialogRef: any;
   @Input() noteData: any;
   note: Note = new Note();
@@ -68,14 +66,24 @@ export class LabelsComponent implements OnInit {
       }
     );
   }
-  createLabel() {
-    console.log("note ID ", this.data.data.noteId);
-    console.log(this.labels, "Display Labels");
-    this.labelService.createLabel(this.label.name).subscribe(resp => {
-      this.snackBar.open("Label Is Created ", "ok", { duration: 2000 })
-    });
-    error => {
-      this.snackBar.open("Label Is Not Created", "error", { duration: 2000 });
+
+  public labelcreate(labelName) {
+    const name = labelName.innerHTML;
+    if (name === '') {
+      return;
     }
+    const label =
+    {
+      name: name
+    }
+
+    this.labelService.createLabel(label).subscribe(response => {
+      console.log("Label ", this.label);
+      this.getAllListLabels();
+      this.snackBar.open("label created", "Ok", { duration: 2000 });
+    }, error => {
+      this.snackBar.open("error", "error to create labels", { duration: 2000 });
+    }
+    )
   }
 }
