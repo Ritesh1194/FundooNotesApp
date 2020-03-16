@@ -72,9 +72,7 @@
   <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side" style="width: 300px;">
       <div class="maindiv">
-
         <div class="notesdiv">
-
           <div class="active system pd-03">
             <img src="assets/icon/emoji_objects-24px.svg">
             <button mat-menu-item class="notes">
@@ -97,13 +95,13 @@
           <div>
             LABELS
           </div>
+
           <div *ngFor="let label of labels" class="labelbutton">
-            <span class="labels1"> <img src="assets/icon/label-24px.svg"> {{label.name}} <br> </span>
+            <button mat-menu-item> <span class="labels1"> <img src="assets/icon/label-24px.svg"> {{label.name}} <br> </span></button>
           </div><br>
           <div class="active system pd-03">
-
             <img src="assets/icon/edit-24px.svg">
-            <button mat-menu-item (click)="getAllListLabels()">
+            <button mat-menu-item (click)="dailogEditLabel(label)">
               <span class="label">Edit labels</span>
             </button>
 
