@@ -34,7 +34,13 @@ export class LabelserviceService {
   addLabelToNote(labelId: any, noteId: any): Observable<any> {
     return this.http.post<any>(`${environment.labelApiUrl}/${environment.addLabelUrl}?labelId=${labelId}&noteId=${noteId}`, { headers: new HttpHeaders().set('token', localStorage.token) });
   }
-  getAllLabel() {
+  getAllLabel(): Observable<any> {
     return this.http.get<any>(`${environment.labelApiUrl}/${environment.getAllLabelUrl}`, { headers: new HttpHeaders().set('token', localStorage.token) });
+  }
+  deleteLabel(labelId: any,noteId:any): Observable<any> {
+    return this.http.post<any>(`${environment.labelApiUrl}/${environment.labelDeleteUrl}?labelId=${labelId}&noteId=${noteId}`, { headers: new HttpHeaders().set('token', localStorage.token) });
+  }
+  updateLabel(lableId: any): Observable<any> {
+    return this.http.put<any>(`${environment.labelApiUrl}/${environment.updateLabelUrl}`, lableId, { headers: new HttpHeaders().set('token', localStorage.token) });
   }
 }
