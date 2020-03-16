@@ -2,11 +2,13 @@ import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angu
 import { NoteServiceService } from 'src/app/core/services/note-service.service';
 import { Note } from 'src/app/core/model/note';
 import { NotesComponent } from '../notes/notes.component';
-import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
+import { Router, ActivatedRoute, NavigationStart, NavigationEnd } from '@angular/router';
+import { MatSnackBar, MatDialog, MatDialogRef } from '@angular/material';
 import { Label } from 'src/app/core/model/label';
 import { LabelserviceService } from 'src/app/core/services/labelservice.service';
 import { Subscription } from 'rxjs';
+import { EditLabelsComponent } from 'src/app/component/edit-labels/edit-labels.component';
+import { LabelsComponent } from '../labels/labels.component';
 // import 'rxjs/add/operator/filter';
 export let browserRefresh = false;
 @Component({
@@ -35,16 +37,24 @@ export class DashboardComponent implements OnInit {
 
   private sub: any;
   private param: any;
-  dialogRef: any;
   subscription: Subscription;
+  mySubscription: Subscription;
+  xyz: any;
 
-  constructor(private noteService: NoteServiceService, private labelService: LabelserviceService, private router: Router, private route: ActivatedRoute, private matSnackBar: MatSnackBar) {
+  name: any;
+
+  constructor(private noteService: NoteServiceService, public dialog: MatDialog, private labelService: LabelserviceService, private router: Router, private route: ActivatedRoute, private matSnackBar: MatSnackBar, public dialogRef: MatDialogRef<LabelsComponent>) {
     // this.getAllListNotes();
-    this.subscription = router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
-        browserRefresh = !router.navigated;
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+
+    this.mySubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Trick the Router into believing it's last link wasn't previously loaded
+        this.router.navigated = false;
       }
-  });
+    });
     this.subscription = labelService.getLabels().subscribe(message => {
       console.log("in display Label subscrib....", message.label);
       this.label = message.label;
@@ -54,7 +64,7 @@ export class DashboardComponent implements OnInit {
     this.getAllTrashedNotes();
     this.getAllArchiveNotes();
     this.getAllListLabels();
-    
+
   }
 
   ngOnInit() {
@@ -182,12 +192,29 @@ export class DashboardComponent implements OnInit {
         if (this.labels != undefined) {
           this.setLabels(this.labels);
         }
-        console.log("Display Labels Are :", this.label);
+        console.log("Display Labels Are :", this.labels);
       },
       (error: any) => {
         console.log(error)
         this.matSnackBar.open('error in note display', 'ok', { duration: 3000 });
       }
     );
+  }
+  ngOnDestroy() {
+    if (this.mySubscription) {
+      this.mySubscription.unsubscribe();
+    }
+  }
+  public dailogEditLabel(name: string) {
+    const data = this.labels;
+    console.log("note value", this.labels);
+    const dialogRef = this.dialog.open(EditLabelsComponent, {
+      width: '500px',
+      data: { 'name': data }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.labels = result;
+    });
   }
 }
