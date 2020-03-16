@@ -34,6 +34,8 @@ import { CollaboratorComponent } from "src/app/component/collaborator/collaborat
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { LabelsComponent } from "src/app/component/labels/labels.component";
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { EditLabelsComponent } from 'src/app/component/edit-labels/edit-labels.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +49,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     NotesComponent,
     UpdatenoteComponent,
     IconlistComponent,
-    CollaboratorComponent, LabelsComponent
+    CollaboratorComponent, LabelsComponent, EditLabelsComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatSelectModule, OwlDateTimeModule, OwlNativeDateTimeModule, MatTooltipModule, MatAutocompleteModule,MatCheckboxModule
 
   ],
-  entryComponents: [UpdatenoteComponent, CollaboratorComponent, LabelsComponent],
+  entryComponents: [UpdatenoteComponent, CollaboratorComponent, LabelsComponent,EditLabelsComponent],
   providers: [
     { provide: MatDialogRef, useValue: {} },
     { provide: MAT_DIALOG_DATA, useValue: [] },
