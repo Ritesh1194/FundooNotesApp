@@ -1,0 +1,9 @@
+.textarea{
+  outline: none;
+  text-decoration-line: underline;
+}
+.textarea:empty:before{
+  content: attr(data-text);
+  opacity: 0.5;
+  font-size: 12px;
+}
